@@ -1,6 +1,9 @@
 # Arduino 交互式UI系统
 
-基于Arduino平台和Axeuh_UI库开发的综合界面系统，集成多级菜单、动态图形、3D渲染和硬件交互功能。
+基于Arduino平台和Axeuh_UI库开发的综合界面系统，集成多级菜单、动态图形、3D渲染和硬件交互功能。基于U8G2。
+多看看注释，应该能看得懂怎么使用（？）
+总之我提供了一个实例工程，而如果你要使用这个ui的话，切记把include文件夹里的文件和src文件里的文件复制到你的工程。
+GIF或图片的转换在这里 https://javl.github.io/image2cpp/ 记得勾swap选项
 
 ![系统演示](image.png) 
 ## 目录
