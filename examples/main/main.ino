@@ -3,7 +3,7 @@
  * 包含矩阵键盘输入、OLED显示、多级菜单、动画、滑动条、3D立方体等多种功能
  */
 
-#include <Arduino.h>
+// #include <Arduino.h>
 #include "Axeuh_UI.h"
 #include "gif.h"
 #include <Wire.h>
