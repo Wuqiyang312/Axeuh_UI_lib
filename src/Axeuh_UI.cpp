@@ -195,7 +195,7 @@ void Axeuh_UI_Ebook::drawEbook(U8G2 *D, IN_PUT_Mode IN, Axeuh_UI_Panel *P, Axeuh
                 else
                     page_y = 0;
             }
-            else if (IN == DOWM)
+            else if (IN == DOWN)
             {
                 if (page_y - interface_h_ > -y_)
                     page_y -= 12;
@@ -597,7 +597,7 @@ void Axeuh_UI_TextMenu::draw_textmenu(U8G2 *D, IN_PUT_Mode IN, Axeuh_UI_Panel *P
 
         Serial.println();
 
-        if (in_put_now == DOWM)
+        if (in_put_now == DOWN)
         {
             if (Box_opt.isSelectable == No_Focusing)
             {
@@ -845,7 +845,7 @@ void Axeuh_UI_TextMenu::draw_textmenu(U8G2 *D, IN_PUT_Mode IN, Axeuh_UI_Panel *P
 
         if (*if_Input)
         {
-            if (IN == UP || IN == DOWM)
+            if (IN == UP || IN == DOWN)
             {
                 if (IN == UP && !handleInput && time_ == 0)
                 {
@@ -853,9 +853,9 @@ void Axeuh_UI_TextMenu::draw_textmenu(U8G2 *D, IN_PUT_Mode IN, Axeuh_UI_Panel *P
                     if (meun_number_now > 0)
                         meun_number_now--;
                 }
-                else if (IN == DOWM && !handleInput && time_ == 0)
+                else if (IN == DOWN && !handleInput && time_ == 0)
                 {
-                    in_put_now = DOWM;
+                    in_put_now = DOWN;
                     if (meun_number_now < menuOptions_index - 1)
                         meun_number_now++;
                 }
@@ -1345,7 +1345,7 @@ void Axeuh_UI_Keyboard::drawKeyboard(U8G2 *D, IN_PUT_Mode IN, Axeuh_UI_Panel *P,
                     {
                         key.text_now = pinyin_MEUN[keyboard_now].up;
                     }
-                    else if (IN == DOWM) // 向下
+                    else if (IN == DOWN) // 向下
                     {
                         key.text_now = pinyin_MEUN[keyboard_now].down;
                     }

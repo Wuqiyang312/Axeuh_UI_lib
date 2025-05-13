@@ -129,7 +129,7 @@ public:
 enum IN_PUT_Mode
 {
     UP,
-    DOWM,
+    DOWN,
     LEFT,
     RIGHT,
     SELECT,
@@ -738,7 +738,7 @@ public:
         xSemaphoreTake(xMutex, 100);
         if (num > meun_number_now && num < menuOptions_index)
         {
-            in_put_now = DOWM;
+            in_put_now = DOWN;
             meun_number_now = num;
         }
         else if (num < meun_number_now && num >= 0)
@@ -758,7 +758,7 @@ public:
 
         if (num > meun_number_now && num < menuOptions_index - 1)
         {
-            in_put_now = DOWM;
+            in_put_now = DOWN;
             meun_number_now = num;
         }
         else if (num < meun_number_now && num > 0)
