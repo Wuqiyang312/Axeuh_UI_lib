@@ -105,22 +105,64 @@ lib_deps =
 
 ### 基础配置
 ```cpp
-#include <Axeuh_UI.h>
 #include <U8g2lib.h>
+#include "Axeuh_UI.h"
 
+// OLED 显示配置
 U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0);
-Axeuh_UI UI(&u8g2);
+Axeuh_UI myui(&u8g2);
 
-void setup() {
-  UI.begin();
-  
-  // 添加主菜单项
-  UI.addMenu("控制面板", showDashboard);
-  UI.addMenu("参数设置", showSettings);
+// 简单的菜单选项
+MenuOption helloOptions[] = {
+    {"[ Hello UI ]", 14, ALIGN_CENTER, TEXT, nullptr, No_Trigger, nullptr, No_Focusing},
+    {"欢迎使用Axeuh_UI", 14},
+    {"这是一个简化示例", 14},
+    {"按按键测试", 14}
+};
+
+// 创建文本菜单
+Axeuh_UI_TextMenu helloMenu(helloOptions, sizeof(helloOptions) / sizeof(helloOptions[0]));
+
+// 主面板
+Axeuh_UI_Panel mainPanel;
+
+// 简单的输入处理
+IN_PUT_Mode simpleInput() {
+    // 这里用模拟摇杆作为示例
+    if (analogRead(35) < 100) return UP;
+    if (analogRead(35) > 3995) return DOWN;
+    if (analogRead(34) < 100) return LEFT;
+    if (analogRead(34) > 3995) return RIGHT;
+    if (!digitalRead(25)) return SELECT;
+    
+    return STOP;
 }
 
-void loop() {
-  UI.update();
+void setup() {
+    Serial.begin(115200);
+    
+    // 初始化按键引脚
+    pinMode(35, INPUT);
+    pinMode(34, INPUT);
+    pinMode(25, INPUT_PULLUP);
+    
+    // 初始化UI系统
+    myui.begin();
+    myui.set(simpleInput);
+    
+    // 设置主面板
+    mainPanel.set(&helloMenu);
+    myui.set(&mainPanel);
+    
+    // 启动显示
+    myui.menu_display_xtaskbegin();
+    
+    // 打开主面板
+    mainPanel.of();
+}
+
+void loop() {  
+  while (1){}
 }
 ```
 
